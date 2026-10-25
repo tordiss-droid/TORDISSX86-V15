@@ -1,0 +1,371 @@
+
+=============================================
+MODULE 1: profile.py
+STATUS: AVAILABLE
+INPUT: line 17
+INPUT: line 45
+
+=============================================
+MODULE 2: username.py
+STATUS: AVAILABLE
+INPUT: line 54
+INPUT: line 18
+
+=============================================
+MODULE 3: posts.py
+STATUS: AVAILABLE
+INPUT: line 46
+INPUT: line 28
+INPUT: line 18
+
+=============================================
+MODULE 4: image_meta.py
+STATUS: AVAILABLE
+INPUT: line 60
+INPUT: line 19
+
+=============================================
+MODULE 5: reports.py
+STATUS: AVAILABLE
+INPUT: line 27
+INPUT: line 44
+INPUT: line 34
+
+=============================================
+MODULE 9: diagnostics.py
+STATUS: AVAILABLE
+INPUT: line 31
+
+=============================================
+MODULE 10: master_search.py
+STATUS: AVAILABLE
+INPUT: line 42
+INPUT: line 27
+INPUT: line 39
+
+=============================================
+MODULE 11: case_manager.py
+STATUS: AVAILABLE
+FUNCTION: create_case
+FUNCTION: list_cases
+INPUT: line 39
+INPUT: line 65
+INPUT: line 9
+INPUT: line 14
+INPUT: line 61
+INPUT: line 68
+INPUT: line 73
+
+=============================================
+MODULE 12: case_search.py
+STATUS: AVAILABLE
+FUNCTION: search_cases
+INPUT: line 56
+INPUT: line 52
+INPUT: line 61
+INPUT: line 10
+
+=============================================
+MODULE 13: case_analytics.py
+STATUS: AVAILABLE
+FUNCTION: analyze_cases
+INPUT: line 66
+INPUT: line 62
+INPUT: line 71
+
+=============================================
+MODULE 14: evidence_vault.py
+STATUS: AVAILABLE
+FUNCTION: load_records
+FUNCTION: save_records
+FUNCTION: register_evidence
+FUNCTION: view_evidence
+FUNCTION: main
+INPUT: line 33
+INPUT: line 34
+INPUT: line 35
+INPUT: line 86
+INPUT: line 82
+INPUT: line 89
+INPUT: line 94
+
+=============================================
+MODULE 15: forensics.py
+STATUS: AVAILABLE
+FUNCTION: calculate_hash
+FUNCTION: inspect_file
+FUNCTION: main
+INPUT: line 16
+INPUT: line 55
+INPUT: line 91
+INPUT: line 87
+INPUT: line 96
+
+=============================================
+MODULE 16: network_diagnostics.py
+STATUS: AVAILABLE
+FUNCTION: get_local_ip
+FUNCTION: get_interfaces
+FUNCTION: test_internet
+FUNCTION: get_dns
+FUNCTION: run_diagnostics
+FUNCTION: main
+INPUT: line 75
+INPUT: line 104
+INPUT: line 100
+INPUT: line 109
+
+=============================================
+MODULE 17: system_info.py
+STATUS: AVAILABLE
+FUNCTION: get_property
+FUNCTION: show_information
+FUNCTION: main
+INPUT: line 56
+INPUT: line 52
+INPUT: line 61
+
+=============================================
+MODULE 18: integrity_monitor.py
+STATUS: AVAILABLE
+FUNCTION: calculate_hash
+FUNCTION: load_database
+FUNCTION: save_database
+FUNCTION: inspect_file
+FUNCTION: compare_files
+FUNCTION: view_history
+FUNCTION: main
+INPUT: line 118
+INPUT: line 73
+INPUT: line 74
+INPUT: line 114
+INPUT: line 121
+INPUT: line 40
+INPUT: line 124
+INPUT: line 129
+
+=============================================
+MODULE 19: log_analyzer.py
+STATUS: AVAILABLE
+FUNCTION: analyze_log
+FUNCTION: main
+INPUT: line 10
+INPUT: line 60
+INPUT: line 93
+INPUT: line 89
+INPUT: line 98
+
+=============================================
+MODULE 20: security_audit.py
+STATUS: AVAILABLE
+FUNCTION: audit_files
+FUNCTION: audit_folders
+FUNCTION: run_audit
+FUNCTION: main
+INPUT: line 190
+INPUT: line 186
+INPUT: line 195
+INPUT: line 143
+
+=============================================
+MODULE 21: password_lab.py
+STATUS: AVAILABLE
+FUNCTION: analyze_password
+FUNCTION: main
+INPUT: line 85
+INPUT: line 81
+INPUT: line 90
+
+=============================================
+MODULE 22: password_generator.py
+STATUS: AVAILABLE
+FUNCTION: generate_password
+FUNCTION: main
+INPUT: line 67
+INPUT: line 40
+INPUT: line 73
+INPUT: line 44
+INPUT: line 49
+
+=============================================
+MODULE 23: encryption_lab.py
+STATUS: AVAILABLE
+FUNCTION: generate_key
+FUNCTION: load_key
+FUNCTION: encrypt_file
+FUNCTION: decrypt_file
+FUNCTION: main
+INPUT: line 130
+INPUT: line 40
+INPUT: line 77
+INPUT: line 126
+INPUT: line 133
+INPUT: line 136
+INPUT: line 141
+
+=============================================
+MODULE 24: network_security.py
+STATUS: AVAILABLE
+FUNCTION: get_domain
+FUNCTION: dns_lookup
+FUNCTION: https_inspection
+FUNCTION: inspect_headers
+FUNCTION: save_report
+FUNCTION: main
+INPUT: line 171
+INPUT: line 155
+INPUT: line 12
+
+=============================================
+MODULE 25: learning_center.py
+STATUS: AVAILABLE
+FUNCTION: show_lessons
+FUNCTION: start_quiz
+FUNCTION: main
+INPUT: line 202
+INPUT: line 184
+INPUT: line 154
+INPUT: line 140
+INPUT: line 217
+INPUT: line 232
+INPUT: line 169
+INPUT: line 237
+
+=============================================
+MODULE 26: system_health.py
+STATUS: AVAILABLE
+FUNCTION: get_android_info
+FUNCTION: get_ram_info
+FUNCTION: get_storage_info
+FUNCTION: check_project
+FUNCTION: main
+INPUT: line 133
+INPUT: line 96
+
+=============================================
+MODULE 27: file_integrity.py
+STATUS: AVAILABLE
+FUNCTION: calculate_hash
+FUNCTION: load_baselines
+FUNCTION: save_baselines
+FUNCTION: inspect_file
+FUNCTION: create_baseline
+FUNCTION: main
+INPUT: line 35
+INPUT: line 75
+INPUT: line 124
+INPUT: line 110
+
+=============================================
+MODULE 28: osint_search.py
+STATUS: AVAILABLE
+FUNCTION: search_web
+FUNCTION: domain_search
+FUNCTION: main
+INPUT: line 6
+INPUT: line 22
+INPUT: line 62
+INPUT: line 99
+INPUT: line 87
+INPUT: line 43
+
+=============================================
+MODULE 29: url_analyzer.py
+STATUS: AVAILABLE
+FUNCTION: analyze_url
+FUNCTION: main
+INPUT: line 13
+INPUT: line 113
+INPUT: line 103
+
+=============================================
+MODULE 30: domain_intel.py
+STATUS: AVAILABLE
+FUNCTION: get_domain
+FUNCTION: lookup_domain
+FUNCTION: main
+INPUT: line 124
+INPUT: line 114
+INPUT: line 13
+
+=============================================
+MODULE 31: dns_intel.py
+STATUS: AVAILABLE
+FUNCTION: analyze_dns
+FUNCTION: main
+INPUT: line 94
+INPUT: line 84
+INPUT: line 12
+
+=============================================
+MODULE 32: advanced_osint.py
+STATUS: AVAILABLE
+FUNCTION: save_report
+FUNCTION: resolver
+FUNCTION: dns_records
+FUNCTION: phone_intelligence
+FUNCTION: email_intelligence
+FUNCTION: camera_forensics
+FUNCTION: domain_intelligence
+FUNCTION: username_intelligence
+FUNCTION: url_analyzer
+FUNCTION: file_forensics
+FUNCTION: dns_intelligence
+FUNCTION: tls_analyzer
+FUNCTION: http_security_headers
+FUNCTION: public_search
+FUNCTION: report_search
+FUNCTION: export_all_reports
+FUNCTION: project_diagnostics
+FUNCTION: view_reports
+FUNCTION: load_cases
+FUNCTION: save_cases
+FUNCTION: create_case
+FUNCTION: view_cases
+FUNCTION: add_case_note
+FUNCTION: search_cases
+FUNCTION: case_statistics
+FUNCTION: backup_project_data
+FUNCTION: main
+INPUT: line 50
+INPUT: line 83
+INPUT: line 117
+INPUT: line 238
+INPUT: line 350
+INPUT: line 403
+INPUT: line 554
+INPUT: line 555
+INPUT: line 599
+INPUT: line 600
+INPUT: line 272
+INPUT: line 709
+INPUT: line 166
+INPUT: line 206
+INPUT: line 300
+INPUT: line 317
+INPUT: line 429
+INPUT: line 620
+
+=============================================
+MODULE 33: v11_dashboard.py
+STATUS: AVAILABLE
+FUNCTION: load
+FUNCTION: save
+FUNCTION: log
+FUNCTION: cases
+FUNCTION: case_name
+FUNCTION: choose_case
+FUNCTION: dashboard
+FUNCTION: add_timeline
+FUNCTION: view_timeline
+FUNCTION: register_evidence
+FUNCTION: verify_evidence
+FUNCTION: export_case
+FUNCTION: activity_logs
+FUNCTION: main
+INPUT: line 210
+INPUT: line 80
+INPUT: line 191
+INPUT: line 61
+INPUT: line 136
+INPUT: line 108

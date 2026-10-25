@@ -1,0 +1,51 @@
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+auth_info/
+auth_info_backup/
+*.db
+*.sqlite
+*.sqlite3
+backups/
+*.tar.gz
+*.zip
+.DS_Store
+
+# Generated OSINT data
+reports/
+exports/
+dns_reports/
+domain_reports/
+network_reports/
+forensics_reports/
+v12_data/
+*.bak
+*.backup
+*_backup.py
+web_panel_before*
+web_panel_pre*
+web_panel_module*
+
+# Local backups
+backups/
+*backup*.py
+*before*.py
+*.bak
+*.backup
+
+# Local generated data
+reports/
+exports/
+dns_reports/
+domain_reports/
+network_reports/
+forensics_reports/
+network_reports/
+v12_data/
+
+# Private local security backup
+/web_panel_BEFORE_PUBLIC_SECURITY.py

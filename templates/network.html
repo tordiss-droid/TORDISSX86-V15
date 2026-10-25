@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TORDISSX86 Network OSINT</title>
+<style>
+body{background:#050b08;color:#00ff75;font-family:monospace;padding:18px}
+h1{color:#00ff75;text-shadow:0 0 12px #00ff75}
+.panel{border:1px solid #00ff75;padding:14px;margin:15px 0;border-radius:8px}
+button{background:#003d20;color:#00ff75;border:1px solid #00ff75;padding:12px;margin:5px}
+input{background:#07130d;color:#00ff75;padding:10px;border:1px solid #00ff75;width:90%;margin:5px}
+table{width:100%;font-size:12px;text-align:left}
+td,th{padding:8px;border-bottom:1px solid #155c35}
+</style>
+</head>
+<body>
+<h1>TORDISSX86</h1>
+<p>NETWORK INTELLIGENCE MODULE v3.0</p>
+
+<div class="panel">
+<h3>LOCAL NETWORK DISCOVERY</h3>
+<button onclick="scan()">START DISCOVERY</button>
+<button onclick="history()">DEVICE HISTORY</button>
+<button onclick="exportReport()">EXPORT REPORT</button>
+<p id="status">SYSTEM READY</p>
+<p>Devices found: <b id="count">0</b></p>
+</div>
+
+<div class="panel">
+<h3>CONNECTED DEVICE INVENTORY</h3>
+<table>
+<thead><tr><th>IP</th><th>MAC</th><th>HOST</th></tr></thead>
+<tbody id="devices"></tbody>
+</table>
+</div>
+
+<div class="panel">
+<h3>AUTHORIZED CAMERA INVENTORY</h3>
+<input id="camName" placeholder="Camera name">
+<input id="camIP" placeholder="Camera private IP">
+<button onclick="addCamera()">REGISTER CAMERA</button>
+<div id="cameras"></div>
+</div>
+
+<script>
+async function scan(){
+ document.getElementById("status").textContent="READING LOCAL NETWORK...";
+ try{
+  let r=await fetch("/api/network/scan");
+  let d=await r.json();
+  document.getElementById("count").textContent=d.count;
+  document.getElementById("devices").innerHTML="";
+  d.devices.forEach(x=>{
+   document.getElementById("devices").innerHTML+=
+   `<tr><td>${safe(x.ip)}</td><td>${safe(x.mac)}</td><td>${safe(x.hostname)}</td></tr>`;
+  });
+  document.getElementById("status").textContent="DISCOVERY COMPLETE";
+ }catch(e){
+  document.getElementById("status").textContent="ERROR: "+e.message;
+ }
+}
+
+async function history(){
+ let r=await fetch("/api/network/history");
+ let d=await r.json();
+ document.getElementById("devices").innerHTML="";
+ d.forEach(x=>{
+  document.getElementById("devices").innerHTML+=
+  `<tr><td>${safe(x.ip)}</td><td>${safe(x.mac)}</td><td>${safe(x.seen)}</td></tr>`;
+ });
+}
+
+async function addCamera(){
+ let label=document.getElementById("camName").value;
+ let ip=document.getElementById("camIP").value;
+ let r=await fetch("/api/network/cameras",{
+  method:"POST",
+  headers:{"Content-Type":"application/json"},
+  body:JSON.stringify({label,ip})
+ });
+ let d=await r.json();
+ alert(d.error || "Camera registered");
+ loadCameras();
+}
+
+async function loadCameras(){
+ let r=await fetch("/api/network/cameras");
+ let d=await r.json();
+ document.getElementById("cameras").innerHTML=d.map(x=>
+ `<p>${safe(x.label)} — ${safe(x.ip)}</p>`
+ ).join("");
+}
+
+function exportReport(){
+ window.location.href="/api/network/export";
+}
+
+function safe(s){
+ const el=document.createElement("span");
+ el.textContent=String(s ?? "");
+ return el.innerHTML;
+}
+loadCameras();
+</script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TORDISSX86 MATRIX OSINT</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">TORDISSX86<span>_</span></div>
+  <div class="online">● SYSTEM ONLINE</div>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-title">MAIN MENU</div>
+    <a href="#dashboard">⌂ Dashboard</a>
+    <a href="#recon">⌕ Domain Recon</a>
+    <a href="#history">◷ Scan History</a>
+    <a href="#reports">▤ Reports</a>
+    <div class="side-title">SYSTEM</div>
+    <div class="side-info">ENGINE: PYTHON</div>
+    <div class="side-info">MODE: PUBLIC OSINT</div>
+    <div class="side-info">VERSION: 3.0</div>
+  </aside>
+
+  <main>
+    <section id="dashboard">
+      <div class="heading">
+        <div>
+          <h1>MATRIX CONSOLE</h1>
+          <p>Digital Intelligence & Reconnaissance</p>
+        </div>
+        <span class="tag">V3.0</span>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <small>ENGINE</small>
+          <strong>ACTIVE</strong>
+        </div>
+        <div class="stat">
+          <small>TOTAL SCANS</small>
+          <strong id="total">0</strong>
+        </div>
+        <div class="stat">
+          <small>LAST SCAN</small>
+          <strong id="last">NONE</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="recon">
+      <h2>⌕ DOMAIN RECONNAISSANCE</h2>
+      <p class="muted">Enter a public domain you are authorized to examine.</p>
+
+      <form id="scanForm">
+        <input id="domain"
+          placeholder="example.com"
+          autocomplete="off" required>
+        <button id="scanButton">INITIALIZE SCAN</button>
+      </form>
+
+      <p id="message" class="status">Awaiting target...</p>
+    </section>
+
+    <section class="panel">
+      <h2>TERMINAL OUTPUT</h2>
+      <div class="terminal" id="results">
+        <div class="terminal-head">TORDISSX86@MATRIX:~</div>
+        <p>[SYSTEM] Matrix interface initialized.</p>
+        <p>[SYSTEM] Waiting for reconnaissance...</p>
+        <p class="cursor">_</p>
+      </div>
+    </section>
+
+    <section class="panel" id="history">
+      <h2>◷ SCAN HISTORY</h2>
+      <div id="historyList" class="muted">
+        No scans recorded.
+      </div>
+      <button class="secondary" id="clearHistory">
+        CLEAR HISTORY
+      </button>
+    </section>
+
+    <section class="panel" id="reports">
+      <h2>▤ REPORT CENTER</h2>
+      <p class="muted">Export the latest scan as JSON.</p>
+      <button id="download" disabled>
+        DOWNLOAD JSON REPORT
+      </button>
+    </section>
+
+    <footer>
+      TORDISSX86 DIGITAL INTELLIGENCE LAB<br>
+      MATRIX GREEN EDITION · 2026
+    </footer>
+  </main>
+</div>
+
+<script>
+let currentReport = null;
+let historyData = [];
+
+try {
+  historyData = JSON.parse(
+    localStorage.getItem("tordis_history") || "[]"
+  );
+} catch(e) {
+  historyData = [];
+}
+
+const $ = id => document.getElementById(id);
+
+function updateHistory() {
+  $("total").textContent = historyData.length;
+  $("last").textContent = historyData.length
+    ? historyData[0].domain : "NONE";
+
+  $("historyList").replaceChildren();
+
+  if (!historyData.length) {
+    $("historyList").textContent = "No scans recorded.";
+    return;
+  }
+
+  historyData.forEach(item => {
+    const row = document.createElement("div");
+    row.className = "history-row";
+    row.textContent = item.domain + " — " + item.date;
+    $("historyList").appendChild(row);
+  });
+}
+
+$("scanForm").addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const domain = $("domain").value.trim();
+  const button = $("scanButton");
+
+  button.disabled = true;
+  $("message").textContent = "SCANNING...";
+  $("results").textContent =
+    "[SYSTEM] Starting public reconnaissance...";
+
+  try {
+    const response = await fetch("/scan", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({domain})
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Scan failed");
+    }
+
+    currentReport = data;
+
+    $("results").textContent =
+      "[+] SCAN COMPLETED\n\n" +
+      JSON.stringify(data, null, 2);
+
+    $("message").textContent = "● RECON COMPLETE";
+
+    historyData.unshift({
+      domain: data.domain,
+      date: new Date().toLocaleString()
+    });
+
+    historyData = historyData.slice(0, 30);
+
+    localStorage.setItem(
+      "tordis_history",
+      JSON.stringify(historyData)
+    );
+
+    updateHistory();
+    $("download").disabled = false;
+
+  } catch(error) {
+    $("message").textContent = "SCAN ERROR";
+    $("results").textContent =
+      "[ERROR] " + error.message;
+  } finally {
+    button.disabled = false;
+  }
+});
+
+$("download").addEventListener("click", () => {
+  if (!currentReport) return;
+
+  const blob = new Blob(
+    [JSON.stringify(currentReport, null, 2)],
+    {type:"application/json"}
+  );
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+
+  a.href = url;
+  a.download = "TORDISSX86-report.json";
+  a.click();
+
+  URL.revokeObjectURL(url);
+});
+
+$("clearHistory").addEventListener("click", () => {
+  historyData = [];
+  localStorage.removeItem("tordis_history");
+  updateHistory();
+});
+
+updateHistory();
+</script>
+
+</body>
+</html>
