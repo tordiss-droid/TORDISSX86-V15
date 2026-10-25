@@ -1,51 +1,44 @@
+# Python
 __pycache__/
 *.py[cod]
+*.pyo
+*.so
+venv/
+.venv/
+env/
+
+# Secrets and environment
 .env
 .env.*
 !.env.example
-*.key
 *.pem
+*.key
+secrets.json
+credentials.json
+
+# Authentication and sessions
 auth_info/
 auth_info_backup/
+auth_info_old/
+sessions/
+tokens/
+
+# Local databases
 *.db
 *.sqlite
 *.sqlite3
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+.DS_Store
+
+# Backups and archives
 backups/
 *.tar.gz
 *.zip
-.DS_Store
 
-# Generated OSINT data
-reports/
-exports/
-dns_reports/
-domain_reports/
-network_reports/
-forensics_reports/
-v12_data/
-*.bak
-*.backup
-*_backup.py
-web_panel_before*
-web_panel_pre*
-web_panel_module*
-
-# Local backups
-backups/
-*backup*.py
-*before*.py
-*.bak
-*.backup
-
-# Local generated data
-reports/
-exports/
-dns_reports/
-domain_reports/
-network_reports/
-forensics_reports/
-network_reports/
-v12_data/
-
-# Private local security backup
-/web_panel_BEFORE_PUBLIC_SECURITY.py
+# Editor files
+.vscode/
+.idea/
