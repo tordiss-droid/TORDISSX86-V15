@@ -1,0 +1,54 @@
+name: TORDISSX86 Python Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+      - name: Check Python syntax
+        run: |
+          python - <<'PY'
+          import pathlib
+          import py_compile
+          import sys
+
+          files = [
+              p for p in pathlib.Path(".").rglob("*.py")
+              if not any(x in p.parts for x in
+                         [".git", ".venv", "venv", "__pycache__"])
+          ]
+
+          failed = []
+          for file in files:
+              try:
+                  py_compile.compile(str(file), doraise=True)
+              except Exception as exc:
+                  failed.append((file, exc))
+
+          print("Python files checked:", len(files))
+          for file, error in failed:
+              print("ERROR:", file, error)
+
+          sys.exit(1 if failed else 0)
+          PY
