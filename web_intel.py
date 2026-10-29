@@ -1,3 +1,4 @@
+import ipaddress
 import re
 import json
 import socket
@@ -20,21 +21,35 @@ def save_report(kind, data):
 
 def domain_intel(domain):
     domain = domain.strip().lower()
-    if not re.fullmatch(r"(?=.{1,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}", domain):
+
+    if not re.fullmatch(
+        r"(?=.{1,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}",
+        domain
+    ):
         raise ValueError("Invalid domain name")
 
-    result = {"domain": domain, "checked": datetime.now().isoformat()}
+    result = {
+        "domain": domain,
+        "checked": datetime.now().isoformat()
+    }
 
     try:
-        result["ip_addresses"] = sorted({
+        addresses = sorted({
             item[4][0] for item in socket.getaddrinfo(domain, 443)
         })
-    except Exception as e:
-        result["dns_error"] = str(e)
 
-    try:
+        if not addresses:
+            raise ValueError("No IP addresses resolved")
+
+        parsed = [ipaddress.ip_address(ip) for ip in addresses]
+
+        if any(not ip.is_global for ip in parsed):
+            raise ValueError("Non-public IP destination blocked")
+
+        result["ip_addresses"] = addresses
+
         context = ssl.create_default_context()
-        with socket.create_connection((domain, 443), timeout=6) as sock:
+        with socket.create_connection((addresses[0], 443), timeout=6) as sock:
             with context.wrap_socket(sock, server_hostname=domain) as secure:
                 cert = secure.getpeercert()
                 result["tls"] = {
@@ -43,8 +58,9 @@ def domain_intel(domain):
                     "issuer": str(cert.get("issuer")),
                     "expires": cert.get("notAfter")
                 }
-    except Exception as e:
-        result["tls_error"] = str(e)
+
+    except Exception as error:
+        result["inspection_note"] = str(error)[:200]
 
     return result
 

@@ -160,8 +160,11 @@ def analyze(kind, value):
     else:
         result = analyze_url(value)
 
-    report = save_report(kind, result)
-    result["report"] = report
+    if kind not in ("email", "phone", "username"):
+        report = save_report(kind, result)
+        result["report"] = report
+    else:
+        result["report"] = None
 
     return result
 

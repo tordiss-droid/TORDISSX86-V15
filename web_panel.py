@@ -18,8 +18,8 @@ REPORTS.mkdir(exist_ok=True)
 app = Flask(__name__)
 
 # LOCALHOST ONLY
-HOST = "127.0.0.1"
-PORT = 4444
+HOST = "0.0.0.0"
+PORT = int(os.environ.get("PORT", "4444"))
 
 # Interactive module sessions
 SESSIONS = {}
@@ -44,7 +44,7 @@ PUBLIC_GET_PATHS = {
     "/api/system/ping",
 }
 
-PUBLIC_POST_PATHS = set()
+PUBLIC_POST_PATHS = {"/api/v15/analyze"}
 
 @app.before_request
 def protect_public():
@@ -1245,6 +1245,13 @@ def v15_analyze():
 
     if len(value) > 2048:
         return jsonify({"error": "Input too long"}), 400
+
+    kind = kind.strip().lower()
+
+    if kind not in combo.ALLOWED_TYPES:
+        return jsonify({
+            "error": "Supported types: Email, Username, Phone, Domain, DNS and URL"
+        }), 403
 
     try:
         result = combo.analyze(kind, value)
