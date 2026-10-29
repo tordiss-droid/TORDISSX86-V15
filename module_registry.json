@@ -1,0 +1,1412 @@
+{
+  "project": "TORDISSX86",
+  "engine": "V15 Combination Engine",
+  "generated": "2026-10-29T03:33:09",
+  "total": 36,
+  "ready_candidates": 3,
+  "input_adapters_needed": 25,
+  "review_required": 8,
+  "errors": 0,
+  "modules": [
+    {
+      "name": "advanced_osint",
+      "file": "advanced_osint.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "save_report",
+          "async": false,
+          "line": 21
+        },
+        {
+          "name": "resolver",
+          "async": false,
+          "line": 28
+        },
+        {
+          "name": "dns_records",
+          "async": false,
+          "line": 35
+        },
+        {
+          "name": "phone_intelligence",
+          "async": false,
+          "line": 48
+        },
+        {
+          "name": "email_intelligence",
+          "async": false,
+          "line": 81
+        },
+        {
+          "name": "camera_forensics",
+          "async": false,
+          "line": 115
+        },
+        {
+          "name": "domain_intelligence",
+          "async": false,
+          "line": 164
+        },
+        {
+          "name": "username_intelligence",
+          "async": false,
+          "line": 204
+        },
+        {
+          "name": "url_analyzer",
+          "async": false,
+          "line": 236
+        },
+        {
+          "name": "file_forensics",
+          "async": false,
+          "line": 270
+        },
+        {
+          "name": "dns_intelligence",
+          "async": false,
+          "line": 298
+        },
+        {
+          "name": "tls_analyzer",
+          "async": false,
+          "line": 315
+        },
+        {
+          "name": "http_security_headers",
+          "async": false,
+          "line": 348
+        },
+        {
+          "name": "public_search",
+          "async": false,
+          "line": 401
+        },
+        {
+          "name": "report_search",
+          "async": false,
+          "line": 427
+        },
+        {
+          "name": "export_all_reports",
+          "async": false,
+          "line": 457
+        },
+        {
+          "name": "project_diagnostics",
+          "async": false,
+          "line": 489
+        },
+        {
+          "name": "view_reports",
+          "async": false,
+          "line": 519
+        },
+        {
+          "name": "load_cases",
+          "async": false,
+          "line": 537
+        },
+        {
+          "name": "save_cases",
+          "async": false,
+          "line": 547
+        },
+        {
+          "name": "create_case",
+          "async": false,
+          "line": 552
+        },
+        {
+          "name": "view_cases",
+          "async": false,
+          "line": 578
+        },
+        {
+          "name": "add_case_note",
+          "async": false,
+          "line": 596
+        },
+        {
+          "name": "search_cases",
+          "async": false,
+          "line": 619
+        },
+        {
+          "name": "case_statistics",
+          "async": false,
+          "line": 638
+        },
+        {
+          "name": "backup_project_data",
+          "async": false,
+          "line": 651
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 681
+        }
+      ],
+      "imports": [
+        "PIL",
+        "datetime",
+        "dns.resolver",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "os",
+        "phonenumbers",
+        "platform",
+        "re",
+        "socket",
+        "ssl",
+        "sys",
+        "urllib.parse",
+        "urllib.request",
+        "zipfile"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "case_analytics",
+      "file": "case_analytics.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "analyze_cases",
+          "async": false,
+          "line": 6
+        }
+      ],
+      "imports": [
+        "datetime",
+        "os"
+      ],
+      "requires_input": true,
+      "has_main": false,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "case_manager",
+      "file": "case_manager.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "create_case",
+          "async": false,
+          "line": 8
+        },
+        {
+          "name": "list_cases",
+          "async": false,
+          "line": 28
+        }
+      ],
+      "imports": [
+        "datetime",
+        "os",
+        "re"
+      ],
+      "requires_input": true,
+      "has_main": false,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "case_search",
+      "file": "case_search.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "search_cases",
+          "async": false,
+          "line": 5
+        }
+      ],
+      "imports": [
+        "os"
+      ],
+      "requires_input": true,
+      "has_main": false,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "dns_intel",
+      "file": "dns_intel.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "analyze_dns",
+          "async": false,
+          "line": 11
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 73
+        }
+      ],
+      "imports": [
+        "datetime",
+        "dns.resolver",
+        "json",
+        "os"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "domain_intel",
+      "file": "domain_intel.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "get_domain",
+          "async": false,
+          "line": 12
+        },
+        {
+          "name": "lookup_domain",
+          "async": false,
+          "line": 28
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 103
+        }
+      ],
+      "imports": [
+        "datetime",
+        "json",
+        "os",
+        "socket",
+        "urllib.error",
+        "urllib.parse",
+        "urllib.request"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "encryption_lab",
+      "file": "encryption_lab.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "generate_key",
+          "async": false,
+          "line": 9
+        },
+        {
+          "name": "load_key",
+          "async": false,
+          "line": 24
+        },
+        {
+          "name": "encrypt_file",
+          "async": false,
+          "line": 33
+        },
+        {
+          "name": "decrypt_file",
+          "async": false,
+          "line": 70
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 114
+        }
+      ],
+      "imports": [
+        "cryptography.fernet",
+        "os"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "evidence_vault",
+      "file": "evidence_vault.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "load_records",
+          "async": false,
+          "line": 10
+        },
+        {
+          "name": "save_records",
+          "async": false,
+          "line": 22
+        },
+        {
+          "name": "register_evidence",
+          "async": false,
+          "line": 30
+        },
+        {
+          "name": "view_evidence",
+          "async": false,
+          "line": 56
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 71
+        }
+      ],
+      "imports": [
+        "datetime",
+        "json",
+        "os"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "file_integrity",
+      "file": "file_integrity.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "calculate_hash",
+          "async": false,
+          "line": 11
+        },
+        {
+          "name": "load_baselines",
+          "async": false,
+          "line": 20
+        },
+        {
+          "name": "save_baselines",
+          "async": false,
+          "line": 30
+        },
+        {
+          "name": "inspect_file",
+          "async": false,
+          "line": 34
+        },
+        {
+          "name": "create_baseline",
+          "async": false,
+          "line": 74
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 97
+        }
+      ],
+      "imports": [
+        "datetime",
+        "hashlib",
+        "json",
+        "os"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "forensics",
+      "file": "forensics.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "calculate_hash",
+          "async": false,
+          "line": 6
+        },
+        {
+          "name": "inspect_file",
+          "async": false,
+          "line": 15
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 78
+        }
+      ],
+      "imports": [
+        "PIL",
+        "datetime",
+        "hashlib",
+        "json",
+        "os"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "image_meta",
+      "file": "image_meta.py",
+      "status": "SYNTAX_OK",
+      "functions": [],
+      "imports": [
+        "PIL",
+        "PIL.ExifTags",
+        "datetime",
+        "os"
+      ],
+      "requires_input": true,
+      "has_main": false,
+      "error": null,
+      "compatibility": "REVIEW_REQUIRED"
+    },
+    {
+      "name": "integrity_monitor",
+      "file": "integrity_monitor.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "calculate_hash",
+          "async": false,
+          "line": 11
+        },
+        {
+          "name": "load_database",
+          "async": false,
+          "line": 20
+        },
+        {
+          "name": "save_database",
+          "async": false,
+          "line": 30
+        },
+        {
+          "name": "inspect_file",
+          "async": false,
+          "line": 38
+        },
+        {
+          "name": "compare_files",
+          "async": false,
+          "line": 72
+        },
+        {
+          "name": "view_history",
+          "async": false,
+          "line": 91
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 103
+        }
+      ],
+      "imports": [
+        "datetime",
+        "hashlib",
+        "json",
+        "os"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "learning_center",
+      "file": "learning_center.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "show_lessons",
+          "async": false,
+          "line": 128
+        },
+        {
+          "name": "start_quiz",
+          "async": false,
+          "line": 156
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 204
+        }
+      ],
+      "imports": [
+        "datetime",
+        "json",
+        "os"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "log_analyzer",
+      "file": "log_analyzer.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "analyze_log",
+          "async": false,
+          "line": 9
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 80
+        }
+      ],
+      "imports": [
+        "collections",
+        "datetime",
+        "os",
+        "re"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "master_search",
+      "file": "master_search.py",
+      "status": "SYNTAX_OK",
+      "functions": [],
+      "imports": [
+        "os",
+        "subprocess",
+        "sys"
+      ],
+      "requires_input": true,
+      "has_main": false,
+      "error": null,
+      "compatibility": "REVIEW_REQUIRED"
+    },
+    {
+      "name": "network",
+      "file": "network.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "db",
+          "async": false,
+          "line": 14
+        },
+        {
+          "name": "discover_devices",
+          "async": false,
+          "line": 37
+        },
+        {
+          "name": "network_page",
+          "async": false,
+          "line": 98
+        },
+        {
+          "name": "scan",
+          "async": false,
+          "line": 103
+        },
+        {
+          "name": "history",
+          "async": false,
+          "line": 127
+        },
+        {
+          "name": "cameras",
+          "async": false,
+          "line": 137
+        },
+        {
+          "name": "export_report",
+          "async": false,
+          "line": 174
+        }
+      ],
+      "imports": [
+        "datetime",
+        "flask",
+        "ipaddress",
+        "json",
+        "os",
+        "socket",
+        "sqlite3",
+        "subprocess"
+      ],
+      "requires_input": false,
+      "has_main": false,
+      "error": null,
+      "compatibility": "CANDIDATE"
+    },
+    {
+      "name": "network_diagnostics",
+      "file": "network_diagnostics.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "get_local_ip",
+          "async": false,
+          "line": 7
+        },
+        {
+          "name": "get_interfaces",
+          "async": false,
+          "line": 17
+        },
+        {
+          "name": "test_internet",
+          "async": false,
+          "line": 29
+        },
+        {
+          "name": "get_dns",
+          "async": false,
+          "line": 39
+        },
+        {
+          "name": "run_diagnostics",
+          "async": false,
+          "line": 50
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 91
+        }
+      ],
+      "imports": [
+        "datetime",
+        "json",
+        "os",
+        "socket",
+        "subprocess"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "network_security",
+      "file": "network_security.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "get_domain",
+          "async": false,
+          "line": 11
+        },
+        {
+          "name": "dns_lookup",
+          "async": false,
+          "line": 20
+        },
+        {
+          "name": "https_inspection",
+          "async": false,
+          "line": 44
+        },
+        {
+          "name": "inspect_headers",
+          "async": false,
+          "line": 78
+        },
+        {
+          "name": "save_report",
+          "async": false,
+          "line": 117
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 141
+        }
+      ],
+      "imports": [
+        "datetime",
+        "json",
+        "os",
+        "socket",
+        "ssl",
+        "subprocess",
+        "urllib.request"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "osint",
+      "file": "osint.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "banner",
+          "async": false,
+          "line": 15
+        },
+        {
+          "name": "get_domain",
+          "async": false,
+          "line": 27
+        },
+        {
+          "name": "request_json",
+          "async": false,
+          "line": 45
+        },
+        {
+          "name": "dns_lookup",
+          "async": false,
+          "line": 53
+        },
+        {
+          "name": "ip_lookup",
+          "async": false,
+          "line": 79
+        },
+        {
+          "name": "website_headers",
+          "async": false,
+          "line": 101
+        },
+        {
+          "name": "ssl_lookup",
+          "async": false,
+          "line": 121
+        },
+        {
+          "name": "rdap_lookup",
+          "async": false,
+          "line": 145
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 171
+        }
+      ],
+      "imports": [
+        "datetime",
+        "json",
+        "re",
+        "socket",
+        "ssl",
+        "urllib.parse",
+        "urllib.request"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "osint_search",
+      "file": "osint_search.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "search_web",
+          "async": false,
+          "line": 5
+        },
+        {
+          "name": "domain_search",
+          "async": false,
+          "line": 42
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 75
+        }
+      ],
+      "imports": [
+        "os",
+        "urllib.parse",
+        "webbrowser"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "password_generator",
+      "file": "password_generator.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "generate_password",
+          "async": false,
+          "line": 5
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 30
+        }
+      ],
+      "imports": [
+        "os",
+        "secrets",
+        "string"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "password_lab",
+      "file": "password_lab.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "analyze_password",
+          "async": false,
+          "line": 10
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 72
+        }
+      ],
+      "imports": [
+        "getpass",
+        "os",
+        "re"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "posts",
+      "file": "posts.py",
+      "status": "SYNTAX_OK",
+      "functions": [],
+      "imports": [
+        "datetime",
+        "os",
+        "urllib.parse"
+      ],
+      "requires_input": true,
+      "has_main": false,
+      "error": null,
+      "compatibility": "REVIEW_REQUIRED"
+    },
+    {
+      "name": "profile",
+      "file": "profile.py",
+      "status": "SYNTAX_OK",
+      "functions": [],
+      "imports": [
+        "datetime",
+        "os"
+      ],
+      "requires_input": true,
+      "has_main": false,
+      "error": null,
+      "compatibility": "REVIEW_REQUIRED"
+    },
+    {
+      "name": "reports",
+      "file": "reports.py",
+      "status": "SYNTAX_OK",
+      "functions": [],
+      "imports": [
+        "os"
+      ],
+      "requires_input": true,
+      "has_main": false,
+      "error": null,
+      "compatibility": "REVIEW_REQUIRED"
+    },
+    {
+      "name": "search_reports",
+      "file": "search_reports.py",
+      "status": "SYNTAX_OK",
+      "functions": [],
+      "imports": [
+        "os"
+      ],
+      "requires_input": true,
+      "has_main": false,
+      "error": null,
+      "compatibility": "REVIEW_REQUIRED"
+    },
+    {
+      "name": "security_audit",
+      "file": "security_audit.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "audit_files",
+          "async": false,
+          "line": 39
+        },
+        {
+          "name": "audit_folders",
+          "async": false,
+          "line": 74
+        },
+        {
+          "name": "run_audit",
+          "async": false,
+          "line": 86
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 176
+        }
+      ],
+      "imports": [
+        "ast",
+        "datetime",
+        "os",
+        "sys"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "system_health",
+      "file": "system_health.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "get_android_info",
+          "async": false,
+          "line": 8
+        },
+        {
+          "name": "get_ram_info",
+          "async": false,
+          "line": 20
+        },
+        {
+          "name": "get_storage_info",
+          "async": false,
+          "line": 42
+        },
+        {
+          "name": "check_project",
+          "async": false,
+          "line": 49
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 80
+        }
+      ],
+      "imports": [
+        "datetime",
+        "os",
+        "platform",
+        "shutil",
+        "subprocess",
+        "sys"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "system_info",
+      "file": "system_info.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "get_property",
+          "async": false,
+          "line": 7
+        },
+        {
+          "name": "show_information",
+          "async": false,
+          "line": 19
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 45
+        }
+      ],
+      "imports": [
+        "os",
+        "platform",
+        "shutil",
+        "subprocess",
+        "sys"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "timeline",
+      "file": "timeline.py",
+      "status": "SYNTAX_OK",
+      "functions": [],
+      "imports": [
+        "datetime",
+        "os"
+      ],
+      "requires_input": true,
+      "has_main": false,
+      "error": null,
+      "compatibility": "REVIEW_REQUIRED"
+    },
+    {
+      "name": "unified_reports",
+      "file": "unified_reports.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "collect_reports",
+          "async": false,
+          "line": 19
+        },
+        {
+          "name": "view_reports",
+          "async": false,
+          "line": 46
+        },
+        {
+          "name": "search_reports",
+          "async": false,
+          "line": 62
+        },
+        {
+          "name": "export_index",
+          "async": false,
+          "line": 77
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 86
+        }
+      ],
+      "imports": [
+        "datetime",
+        "json",
+        "os",
+        "pathlib"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "url_analyzer",
+      "file": "url_analyzer.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "analyze_url",
+          "async": false,
+          "line": 12
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 92
+        }
+      ],
+      "imports": [
+        "datetime",
+        "hashlib",
+        "json",
+        "os",
+        "re",
+        "socket",
+        "urllib.parse"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "username",
+      "file": "username.py",
+      "status": "SYNTAX_OK",
+      "functions": [],
+      "imports": [
+        "datetime",
+        "os",
+        "urllib.parse"
+      ],
+      "requires_input": true,
+      "has_main": false,
+      "error": null,
+      "compatibility": "REVIEW_REQUIRED"
+    },
+    {
+      "name": "v11_dashboard",
+      "file": "v11_dashboard.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "load",
+          "async": false,
+          "line": 15
+        },
+        {
+          "name": "save",
+          "async": false,
+          "line": 22
+        },
+        {
+          "name": "log",
+          "async": false,
+          "line": 26
+        },
+        {
+          "name": "cases",
+          "async": false,
+          "line": 35
+        },
+        {
+          "name": "case_name",
+          "async": false,
+          "line": 45
+        },
+        {
+          "name": "choose_case",
+          "async": false,
+          "line": 51
+        },
+        {
+          "name": "dashboard",
+          "async": false,
+          "line": 67
+        },
+        {
+          "name": "add_timeline",
+          "async": false,
+          "line": 75
+        },
+        {
+          "name": "view_timeline",
+          "async": false,
+          "line": 93
+        },
+        {
+          "name": "register_evidence",
+          "async": false,
+          "line": 103
+        },
+        {
+          "name": "verify_evidence",
+          "async": false,
+          "line": 129
+        },
+        {
+          "name": "export_case",
+          "async": false,
+          "line": 150
+        },
+        {
+          "name": "activity_logs",
+          "async": false,
+          "line": 171
+        },
+        {
+          "name": "main",
+          "async": false,
+          "line": 176
+        }
+      ],
+      "imports": [
+        "datetime",
+        "hashlib",
+        "json",
+        "pathlib"
+      ],
+      "requires_input": true,
+      "has_main": true,
+      "error": null,
+      "compatibility": "INPUT_ADAPTER_REQUIRED"
+    },
+    {
+      "name": "web_intel",
+      "file": "web_intel.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "save_report",
+          "async": false,
+          "line": 15
+        },
+        {
+          "name": "domain_intel",
+          "async": false,
+          "line": 21
+        },
+        {
+          "name": "email_intel",
+          "async": false,
+          "line": 51
+        },
+        {
+          "name": "phone_intel",
+          "async": false,
+          "line": 77
+        },
+        {
+          "name": "username_intel",
+          "async": false,
+          "line": 96
+        },
+        {
+          "name": "analyze",
+          "async": false,
+          "line": 115
+        }
+      ],
+      "imports": [
+        "datetime",
+        "dns.resolver",
+        "email.utils",
+        "json",
+        "pathlib",
+        "phonenumbers",
+        "re",
+        "socket",
+        "ssl",
+        "urllib.parse",
+        "urllib.request"
+      ],
+      "requires_input": false,
+      "has_main": false,
+      "error": null,
+      "compatibility": "CANDIDATE"
+    },
+    {
+      "name": "web_panel",
+      "file": "web_panel.py",
+      "status": "SYNTAX_OK",
+      "functions": [
+        {
+          "name": "protect_public",
+          "async": false,
+          "line": 48
+        },
+        {
+          "name": "find_modules",
+          "async": false,
+          "line": 72
+        },
+        {
+          "name": "get_module",
+          "async": false,
+          "line": 176
+        },
+        {
+          "name": "read_process_output",
+          "async": false,
+          "line": 191
+        },
+        {
+          "name": "api_modules",
+          "async": false,
+          "line": 221
+        },
+        {
+          "name": "api_run",
+          "async": false,
+          "line": 231
+        },
+        {
+          "name": "api_output",
+          "async": false,
+          "line": 282
+        },
+        {
+          "name": "api_input",
+          "async": false,
+          "line": 297
+        },
+        {
+          "name": "api_stop",
+          "async": false,
+          "line": 322
+        },
+        {
+          "name": "password_generator",
+          "async": false,
+          "line": 342
+        },
+        {
+          "name": "reports_page",
+          "async": false,
+          "line": 371
+        },
+        {
+          "name": "home",
+          "async": false,
+          "line": 996
+        },
+        {
+          "name": "health",
+          "async": false,
+          "line": 1001
+        },
+        {
+          "name": "osint_power",
+          "async": false,
+          "line": 1019
+        }
+      ],
+      "imports": [
+        "ast",
+        "datetime",
+        "flask",
+        "json",
+        "os",
+        "pathlib",
+        "secrets",
+        "string",
+        "subprocess",
+        "sys",
+        "threading"
+      ],
+      "requires_input": false,
+      "has_main": true,
+      "error": null,
+      "compatibility": "CANDIDATE"
+    }
+  ]
+}

@@ -42,3 +42,45 @@ backups/
 # Editor files
 .vscode/
 .idea/
+
+# TORDISSX86 generated data
+DEBUG_EXPORT/
+reports/
+dns_reports/
+domain_reports/
+network_reports/
+forensics_reports/
+exports/
+v12_data/
+
+# Project backups
+*_backup.py
+*_before_*.py
+*BEFORE*.py
+*.py.backup*
+*.py.bak*
+web_panel*.backup*
+web_panel*.bak*
+
+# Temporary audit output
+*.pyc
+__pycache__/
+
+# Timestamped backup files
+*_backup_*.py
+*BEFORE*.py
+
+# Temporary integration and audit helpers
+add_v15_ui.py
+MODULE_COMPAT_AUDIT.txt
+MODULE_INTERFACE_REPORT.txt
+module_compat_audit.py
+module_interface_audit.py
+
+# Render timestamp backups
+render_before_*.yaml
+*_backup_*.yaml
+*_before_*.yaml
+
+# Temporary helper scripts
+enhance_render.py

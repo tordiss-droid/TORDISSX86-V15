@@ -65,9 +65,12 @@ def email_intel(address):
 
     try:
         import dns.resolver
+        resolver = dns.resolver.Resolver(configure=False)
+        resolver.nameservers = ["1.1.1.1", "8.8.8.8"]
+        resolver.lifetime = 5
         result["mx_records"] = [
             str(x.exchange).rstrip(".")
-            for x in dns.resolver.resolve(domain, "MX", lifetime=5)
+            for x in resolver.resolve(domain, "MX")
         ]
     except Exception as e:
         result["mx_note"] = "MX lookup unavailable: " + str(e)

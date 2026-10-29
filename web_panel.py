@@ -9,6 +9,7 @@ import subprocess
 from pathlib import Path
 from datetime import datetime
 from flask import Flask, request, jsonify, render_template_string
+import combination_engine_v15 as combo
 
 ROOT = Path(__file__).resolve().parent
 REPORTS = ROOT / "reports"
@@ -38,23 +39,32 @@ PUBLIC_GET_PATHS = {
     "/api/modules",
     "/network",
     "/api/osint/power",
+    "/api/v15/status",
+    "/api/v15/reports",
+    "/api/system/ping",
 }
+
+PUBLIC_POST_PATHS = set()
 
 @app.before_request
 def protect_public():
     if not PUBLIC_READ_ONLY:
         return None
 
-    # Allow public static assets such as CSS and JavaScript.
+    # Public static assets
     if request.endpoint == "static" and request.method == "GET":
         return None
 
-    # Allow only selected public read-only pages and endpoints.
+    # Approved public GET endpoints
     if request.method == "GET" and request.path in PUBLIC_GET_PATHS:
         return None
 
+    # Approved public POST endpoints
+    if request.method == "POST" and request.path in PUBLIC_POST_PATHS:
+        return None
+
     return jsonify({
-        "error": "This feature is disabled in public demo mode"
+        "error": "This feature requires authorized access"
     }), 403
 
 
@@ -573,6 +583,47 @@ footer {
     color: #5f8bb6;
 }
 
+
+/* TORDISSX86 V15 */
+.v15-card {
+    background: rgba(0, 25, 12, .92);
+    border: 1px solid #087b43;
+    border-radius: 18px;
+    padding: 20px;
+    margin: 16px 0;
+    box-shadow: 0 0 18px rgba(0,255,100,.08);
+}
+.v15-card input, .v15-card select {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px 0;
+    padding: 13px;
+    border-radius: 12px;
+    border: 1px solid #16834c;
+    background: #06150d;
+    color: #eaffef;
+}
+.v15-result {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    background: #020a05;
+    border: 1px solid #17633b;
+    border-radius: 12px;
+    padding: 14px;
+    min-height: 100px;
+    color: #75ffad;
+}
+.v15-muted { color: #9bb9a5; }
+.v15-button {
+    background: #087b43;
+    color: white;
+    border: 0;
+    border-radius: 12px;
+    padding: 13px 20px;
+    cursor: pointer;
+    margin: 5px;
+}
+
 </style>
 </head>
 
@@ -588,6 +639,7 @@ footer {
 <nav>
     <button onclick="showPage('dashboard')">Dashboard</button>
     <button onclick="showPage('modules')">Module Center</button>
+<button onclick="showPage('v15lab')">V15 Combination Lab</button>
     <button onclick="showPage('terminal')">Interactive Terminal</button>
     <button onclick="showPage('password')">Password Generator</button>
     <button onclick="showPage('reports')">Reports</button>
@@ -648,6 +700,56 @@ footer {
     <div id="moduleGrid" class="grid"></div>
 </section>
 
+
+
+<section id="v15lab" class="hidden">
+    <h2>TORDISSX86 V15 COMBINATION LAB</h2>
+
+    <div class="v15-card">
+        <h3>COMBINATION ENGINE</h3>
+        <p class="v15-muted">
+            Public-source research and basic technical intelligence.
+            Use information you own or are authorized to examine.
+        </p>
+        <p id="v15Status" class="status">Checking engine...</p>
+
+        <label for="v15Type">Analysis Type</label>
+        <select id="v15Type">
+            <option value="domain">Domain Intelligence</option>
+            <option value="dns">DNS Records</option>
+            <option value="email">Email Format / MX Check</option>
+            <option value="phone">Phone Number Metadata</option>
+            <option value="url">URL Analysis</option>
+            <option value="username">Public Username Leads</option>
+        </select>
+
+        <label for="v15Value">Input</label>
+        <input
+            id="v15Value"
+            type="text"
+            maxlength="2048"
+            placeholder="Enter a domain, URL, email, phone or username"
+            autocomplete="off"
+        >
+
+        <button class="v15-button" id="v15Run" onclick="runV15Analysis()">
+            RUN ANALYSIS
+        </button>
+        <button class="v15-button" onclick="loadV15Reports()">
+            REFRESH REPORTS
+        </button>
+    </div>
+
+    <div class="v15-card">
+        <h3>ANALYSIS OUTPUT</h3>
+        <pre id="v15Output" class="v15-result">Waiting for analysis...</pre>
+    </div>
+
+    <div class="v15-card">
+        <h3>SAVED V15 REPORTS</h3>
+        <div id="v15ReportList" class="v15-result">No reports loaded.</div>
+    </div>
+</section>
 
 <section id="terminal" class="hidden">
     <h2>INTERACTIVE MODULE TERMINAL</h2>
@@ -761,6 +863,7 @@ function showPage(id) {
     document.getElementById(id).classList.remove("hidden");
 
     if (id === "reports") loadReports();
+    if (id === "v15lab") { loadV15Status(); loadV15Reports(); }
     if (id === "system") loadSystem();
 }
 
@@ -975,6 +1078,93 @@ async function loadSystem() {
         "Web interface is operational.";
 }
 
+
+// ==========================================
+// TORDISSX86 V15 COMBINATION INTERFACE
+// ==========================================
+
+async function loadV15Status() {
+    const status = document.getElementById("v15Status");
+    try {
+        const response = await fetch("/api/v15/status");
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "Status request failed");
+        }
+
+        status.textContent =
+            data.engine + " | " + data.status +
+            " | Supported: " + data.supported.join(", ");
+    } catch (error) {
+        status.textContent = "V15 unavailable: " + error.message;
+    }
+}
+
+async function runV15Analysis() {
+    const kind = document.getElementById("v15Type").value;
+    const value = document.getElementById("v15Value").value.trim();
+    const output = document.getElementById("v15Output");
+    const button = document.getElementById("v15Run");
+
+    if (!value) {
+        output.textContent = "Please enter an input first.";
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "ANALYZING...";
+    output.textContent = "Analysis running...";
+
+    try {
+        const response = await fetch("/api/v15/analyze", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({kind: kind, value: value})
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "Analysis request failed");
+        }
+
+        output.textContent = JSON.stringify(data.result, null, 2);
+        await loadV15Reports();
+
+    } catch (error) {
+        output.textContent = "ERROR: " + error.message;
+    } finally {
+        button.disabled = false;
+        button.textContent = "RUN ANALYSIS";
+    }
+}
+
+async function loadV15Reports() {
+    const list = document.getElementById("v15ReportList");
+
+    try {
+        const response = await fetch("/api/v15/reports");
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "Reports request failed");
+        }
+
+        const count = Number(data.count || 0);
+        list.textContent = count +
+            " reports saved. Report details are private.";
+
+    } catch (error) {
+        list.textContent = "Unable to load reports: " + error.message;
+    }
+}
+
+// ==========================================
+// END V15 INTERFACE
+// ==========================================
+
+
 loadModules();
 
 </script>
@@ -1028,6 +1218,62 @@ def osint_power():
     })
 
 # END TORDISSX86_OSINT_POWER_CONTROL
+
+
+
+# ==========================================
+# TORDISSX86 V15 COMBINATION API
+# ==========================================
+
+@app.route("/api/v15/status", methods=["GET"])
+def v15_status():
+    return jsonify(combo.get_status())
+
+
+@app.route("/api/v15/analyze", methods=["POST"])
+def v15_analyze():
+    data = request.get_json(silent=True)
+
+    if not isinstance(data, dict):
+        return jsonify({"error": "JSON object required"}), 400
+
+    kind = data.get("kind")
+    value = data.get("value")
+
+    if not isinstance(kind, str) or not isinstance(value, str):
+        return jsonify({"error": "kind and value must be strings"}), 400
+
+    if len(value) > 2048:
+        return jsonify({"error": "Input too long"}), 400
+
+    try:
+        result = combo.analyze(kind, value)
+        return jsonify({"success": True, "result": result})
+
+    except ValueError as error:
+        return jsonify({"error": str(error)}), 400
+
+    except Exception:
+        app.logger.exception("V15 analysis failed")
+        return jsonify({"error": "Analysis failed; check server logs"}), 500
+
+
+@app.route("/api/v15/reports", methods=["GET"])
+def v15_reports():
+    reports = combo.list_reports()
+    return jsonify({
+        "count": len(reports),
+        "message": "Report details are private."
+    })
+
+# END TORDISSX86 V15 COMBINATION API
+
+
+
+@app.route("/api/system/ping", methods=["GET"])
+def system_ping():
+    return jsonify({"status": "ok"}), 200
+
 
 if __name__ == "__main__":
     print("=" * 45)
